@@ -3,6 +3,7 @@ package BellmanFordAlgo;
 import Model.CurrencyData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,28 +12,35 @@ public class VertexCreator {
     private CurrencyData currencyData;
     private List<Vertex> vertexList;
     private List<Edge> edgeList;
-    //private Map data;
-    List<String> tickers;
+
 
     public VertexCreator(CurrencyData currencyData) {
         this.currencyData = currencyData;
-        tickers = currencyData.getTickers();
         vertexList = new ArrayList<>();
         edgeList = new ArrayList<>();
     }
 
-    public void addEdge(String s, String c, Double d){
-        Vertex a = new Vertex(s);
-        Vertex b = new Vertex(c);
-        vertexList.add(a);
-        vertexList.add(b);
-        edgeList.add(new Edge(a,b,d));
+//    public void addEdge(String s, String c, Double d){
+//        Vertex a = new Vertex(s);
+//        Vertex b = new Vertex(c);
+//        vertexList.add(a);
+//        vertexList.add(b);
+//        edgeList.add(new Edge(a,b,d));
+//    }
+
+    private Map<String, ArrayList<Double>> createHashMapCopy(){
+        Map<String, ArrayList<Double>> innerData = new HashMap<>();
+        for(Object s: currencyData.getMap().keySet()){
+            innerData.put((String) s, (ArrayList) currencyData.getMap().get(s));
+        }
+        return innerData;
     }
 
     public void initializeEdgeList() {
-        Map innerData = currencyData.getMap();
-        List<String> keys = new ArrayList<>();
+        Map innerData = createHashMapCopy();
 
+
+        List<String> keys = new ArrayList<>();
         for (Object o : innerData.keySet()) {
             String key = String.valueOf(o);
             keys.add(key);
@@ -40,6 +48,7 @@ public class VertexCreator {
 
 
         List<String> iteratedKey = new ArrayList<>();
+        List<String> tickers = currencyData.getTickers();
         for (String t : tickers) {
             for (String key : keys) {
                 if(iteratedKey.contains(key)){
@@ -75,6 +84,7 @@ public class VertexCreator {
     }
 
     public void initializeVertexList() {
+        List<String> tickers = currencyData.getTickers();
         for (String t : tickers) {
             vertexList.add(new Vertex(t));
         }
@@ -93,10 +103,10 @@ public class VertexCreator {
     }
 
     public Map getData() {
-        return currencyData.getMap();
+        return this.currencyData.getMap();
     }
 
     public List<String> getTickers() {
-        return tickers;
+        return this.currencyData.getTickers();
     }
 }

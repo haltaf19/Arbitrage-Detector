@@ -20,6 +20,7 @@ public class BellmanFord {
 
         // Iterate throw all vertex and on every iteration relax all edges
         for (int i = 0; i < vertexList.size() - 1; i++) { // V-1 iterations
+
             for (Edge edge : edgeList) {
                 if (edge.getStartVertex().getMinDistance() == Integer.MAX_VALUE) {
                     continue;
