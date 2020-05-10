@@ -24,9 +24,10 @@ public class BellmanFord {
                 if (edge.getStartVertex().getMinDistance() == Integer.MAX_VALUE) {
                     continue;
                 }
+
                 double newDistance = edge.getStartVertex().getMinDistance() + edge.getWeight();
 
-                if (newDistance < edge.getTargetVertex().getMinDistance() + edge.getWeight()) {
+                if (newDistance < edge.getTargetVertex().getMinDistance()) {
                     edge.getTargetVertex().setMinDistance(newDistance);
                     edge.getTargetVertex().setPreviousVertex(edge.getStartVertex());
                 }
@@ -37,11 +38,13 @@ public class BellmanFord {
             if (edge.getStartVertex().getMinDistance() != Integer.MAX_VALUE) {
                 if (hasCycle(edge)) {
                     Vertex vertex = edge.getStartVertex();
-                    while (!vertex.equals(edge.getStartVertex())) {
+
+                    while (!vertex.equals(edge.getTargetVertex())) {
                         this.cycleList.add(vertex);
                         vertex = vertex.getPreviousVertex();
                     }
                     this.cycleList.add(edge.getTargetVertex());
+
                     return;
                 }
             }
@@ -56,7 +59,7 @@ public class BellmanFord {
         if (this.cycleList != null) {
             System.out.println("Arbitrage Opportunity Detected!");
             for (Vertex vertex : this.cycleList) {
-                System.out.println(vertex);
+                System.out.println(vertex.toString());
             }
         } else {
             System.out.println("Sorry, there were no arbitrage opportunities detected");

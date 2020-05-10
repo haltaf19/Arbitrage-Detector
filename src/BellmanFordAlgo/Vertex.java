@@ -43,11 +43,6 @@ public class Vertex {
         return previousVertex;
     }
 
-    @Override
-    public String toString() {
-        return ""+ this.id;
-    }
-
     public void setPreviousVertex(Vertex previousVertex) {
         this.previousVertex = previousVertex;
     }
