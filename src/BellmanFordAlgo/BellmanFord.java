@@ -77,7 +77,7 @@ public class BellmanFord {
 
                 result = result + " " + cycleList.get(i).getId();
             }
-           System.out.println(result + " ]");
+           System.out.println(result + " " + cycleList.get(0).getId() + " ]");
             //System.out.println(calcArb());
         } else {
             System.out.println("Sorry, there were no arbitrage opportunities detected");
