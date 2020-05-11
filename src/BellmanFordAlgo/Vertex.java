@@ -54,4 +54,7 @@ public class Vertex {
     public void setAdjacencies(List<Edge> adjacencies) {
         this.adjacencies = adjacencies;
     }
+
+
+
 }

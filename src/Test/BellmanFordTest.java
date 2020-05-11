@@ -10,6 +10,9 @@ public class BellmanFordTest {
     public static void main(String[] args) {
         CurrencyData currencyData  = new CurrencyData();
        VertexCreator g2 = new VertexCreator(currencyData);
+       g2.addEdge("E", "C", -5.0);
+       g2.addEdge("C", "D", 2.1);
+       g2.addEdge("D", "E", 1.9);
 //        g2.addEdge("USD", "CAD", 4.0);
 //        g2.addEdge("USD", "AUD", 4.0);
 //        // "CAD" nowhere

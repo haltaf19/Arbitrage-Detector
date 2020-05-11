@@ -11,16 +11,13 @@ public class BellmanFord {
     public BellmanFord(List<Vertex> vertexList, List<Edge> edgeList) {
         this.vertexList = vertexList;
         this.edgeList = edgeList;
-        this.cycleList = new ArrayList<>();
     }
 
     public void bellmanFord(Vertex sourceVertex) {
         // Set the distance of the Node you are at to 0
         sourceVertex.setMinDistance(0);
-
-        // Iterate throw all vertex and on every iteration relax all edges
+        // Iterate through all vertex and on every iteration relax all edges
         for (int i = 0; i < vertexList.size() - 1; i++) { // V-1 iterations
-
             for (Edge edge : edgeList) {
                 if (edge.getStartVertex().getMinDistance() == Integer.MAX_VALUE) {
                     continue;
@@ -33,18 +30,32 @@ public class BellmanFord {
                     edge.getTargetVertex().setPreviousVertex(edge.getStartVertex());
                 }
             }
+
         }
+
 
         for (Edge edge : edgeList) {  // V-Iteration
             if (edge.getStartVertex().getMinDistance() != Integer.MAX_VALUE) {
                 if (hasCycle(edge)) {
                     Vertex vertex = edge.getStartVertex();
+                    List<Vertex> curCycleList = new ArrayList<>();
 
-                    while (!vertex.equals(edge.getTargetVertex())) {
-                        this.cycleList.add(vertex);
+
+             /*       while (!vertex.equals(edge.getTargetVertex())) {
+                        curCycleList.add(vertex);
+                        //this.cycleList.add(vertex);
+                        vertex = vertex.getPreviousVertex();
+                    }*/
+
+
+                    while (!curCycleList.contains(vertex)) {
+                        curCycleList.add(vertex);
                         vertex = vertex.getPreviousVertex();
                     }
-                    this.cycleList.add(edge.getTargetVertex());
+                    if (!curCycleList.isEmpty()) {
+                        this.cycleList = curCycleList;
+                    }
+                    //this.cycleList.add(edge.getTargetVertex());
 
                     return;
                 }
@@ -53,17 +64,36 @@ public class BellmanFord {
     }
 
     private boolean hasCycle(Edge edge) {
+        //return edge.getStartVertex().getMinDistance() + edge.getWeight() < edge.getTargetVertex().getMinDistance();
         return edge.getTargetVertex().getMinDistance() > edge.getStartVertex().getMinDistance() + edge.getWeight();
     }
 
     public void printCycle() {
         if (this.cycleList != null) {
             System.out.println("Arbitrage Opportunity Detected!");
-            for (Vertex vertex : this.cycleList) {
-                System.out.println(vertex.toString());
+            System.out.println("================================");
+            String result = "PATH: [";
+            for(int i = 0; i < this.cycleList.size(); i++){
+
+                result = result + " " + cycleList.get(i).getId();
             }
+           System.out.println(result + " ]");
+            //System.out.println(calcArb());
         } else {
             System.out.println("Sorry, there were no arbitrage opportunities detected");
         }
     }
+
+//    private String calcArb() {
+//        Double total = 0.0;
+//        for(Vertex v: cycleList){
+//            total +=  v.getMinDistance();
+//        }
+//        System.out.println(total);
+//        System.out.println(-total);
+//        Double arb = Math.exp(-total) - 1;
+//        String s = "Total Return: " + arb;
+//        return s;
+//    }
+
 }
