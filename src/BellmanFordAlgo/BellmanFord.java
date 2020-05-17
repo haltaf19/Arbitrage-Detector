@@ -13,6 +13,22 @@ public class BellmanFord {
         this.edgeList = edgeList;
     }
 
+    public List<String> getCycleListId() {
+        List<String> idList = new ArrayList<>();
+        for(Vertex c : cycleList){
+            idList.add(c.getId());
+        }
+        return idList;
+    }
+
+    public List<String> getVertexListId() {
+        List<String> idList = new ArrayList<>();
+        for(Vertex c : vertexList){
+            idList.add(c.getId());
+        }
+        return idList;
+    }
+
     public void bellmanFord(Vertex sourceVertex) {
         // Set the distance of the Node you are at to 0
         sourceVertex.setMinDistance(0);
