@@ -14,8 +14,9 @@ Below is a sample output.
 ![Path](Capture.PNG)
 
 ### Future Additions
-* Implement JUnit Tests
 * Calculate total return of arbitrage
 * Have the algorithm continuously updating in real time
 
+ #### Note
  
+Arbitrage Detector may not be completely accurate. </br> Further testing is required!
