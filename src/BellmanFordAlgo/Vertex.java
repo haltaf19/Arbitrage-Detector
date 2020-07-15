@@ -1,19 +1,14 @@
 package BellmanFordAlgo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class Vertex {
     private String id;
-    private boolean visited;
-    private double minDistance = Integer.MAX_VALUE; //Infinity
-    private Vertex previousVertex;
-    private List<Edge> adjacencies;
 
     public Vertex(String id){
         this.id = id;
-        this.adjacencies = new ArrayList<>();
     }
+
 
     public String getId() {
         return id;
@@ -23,38 +18,21 @@ public class Vertex {
         this.id = id;
     }
 
-    public boolean isVisited() {
-        return visited;
+    @Override
+    public String toString() {
+        return "Vertex " + id;
     }
 
-    public void setVisited(boolean visited) {
-        this.visited = visited;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vertex vertex = (Vertex) o;
+        return Objects.equals(id, vertex.id);
     }
 
-    public double getMinDistance() {
-        return minDistance;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
-
-    public void setMinDistance(double minDistance) {
-        this.minDistance = minDistance;
-    }
-
-    public Vertex getPreviousVertex() {
-        return previousVertex;
-    }
-
-    public void setPreviousVertex(Vertex previousVertex) {
-        this.previousVertex = previousVertex;
-    }
-
-    public List<Edge> getAdjacencies() {
-        return adjacencies;
-    }
-
-    public void setAdjacencies(List<Edge> adjacencies) {
-        this.adjacencies = adjacencies;
-    }
-
-
-
 }
