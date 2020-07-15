@@ -10,7 +10,7 @@ The application assigns currencies to different vertices with the edge weight re
 algorithm finds the minimum distance and we are looking for the maximum amount of currency recieved, the exchange rate will be transformed by taking
 its logarithm and multiplying it by -1.
 
-Below is a sample output.
+Below is a sample output. </br>
 ![Path](Capture.PNG)
 
 ### Future Additions
