@@ -35,13 +35,15 @@ public class BellmanFordAlgorithm {
             System.out.println("==================================");
             String s= "Path: [ ";
             for(Map.Entry<List<Vertex>, Double> entry: opportunities.entrySet()) {
-                for(int i = 0; i < entry.getKey().size(); i++){
-                    s = s + entry.getKey().get(i).getId() + ", ";
+                s += entry.getKey().get(0).getId();
+                for(int i = 1; i < entry.getKey().size(); i++){
+                    s = s + ", " + entry.getKey().get(i).getId();
+
                 }
-                s= s.substring(0, s.length() - 2);
+
                 s+= " ]";
                 System.out.println(s);
-                System.out.println("Return: " + entry.getValue() * 100 + "%");
+                System.out.println("Return: " + entry.getValue() * 100+ "%");
                 System.out.println();
                 s = "Path: [ ";
             }
@@ -155,4 +157,6 @@ public class BellmanFordAlgorithm {
     public HashMap<List<Vertex>, Double> getOpportunities() {
         return opportunities;
     }
+
+
 }
