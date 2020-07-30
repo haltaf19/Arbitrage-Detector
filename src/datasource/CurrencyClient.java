@@ -1,22 +1,17 @@
-package graph;
+package datasource;
 
+import lombok.AllArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
+@AllArgsConstructor
 public class CurrencyClient {
 
     URL url;
-    HttpURLConnection connection;
-
-    public CurrencyClient(URL url, HttpURLConnection connection) {
-        this.url = url;
-        this.connection = connection;
-    }
 
     public JSONArray getCurrencyData() {
         try {

@@ -1,22 +1,24 @@
 package algorithm;
 
-import graph.GraphBuilder;
+import graphbuilder.GraphBuilder;
+import lombok.AllArgsConstructor;
 import model.Graph;
 import model.Vertex;
 
 import java.util.List;
 import java.util.Map;
 
+@AllArgsConstructor
 public class AlgorithmRunner {
-    private final Graph graph;
+    private final GraphBuilder graphBuilder;
+    private final CycleFinder cycleFinder;
+    private final OpportunityFinder opportunityFinder;
+    private final ResultsBuilder resultsBuilder;
 
-    public AlgorithmRunner() {
-        graph = new GraphBuilder().build();
-    }
-
-    public void run() {
-        List<List<Vertex>> cycles = new CycleFinder(graph).findCycles();
-        Map<List<Vertex>, Double> opportunities = new OpportunityFinder(graph).findAllOpportunities(cycles);
-        new OpportunityPrinter().print(opportunities);
+    public String runAlgorithm() {
+        Graph graph = graphBuilder.build();
+        List<List<Vertex>> cycles = cycleFinder.findCycles(graph);
+        Map<List<Vertex>, Double> opportunities = opportunityFinder.find(graph, cycles);
+        return resultsBuilder.buildOutput(opportunities);
     }
 }

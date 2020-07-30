@@ -1,4 +1,4 @@
-package utils;
+package testutils;
 
 import model.Graph;
 
@@ -11,5 +11,4 @@ public class GraphUtils {
     public static Graph createGraphMultipleNodes() {
         return null;
     }
-
 }
