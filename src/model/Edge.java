@@ -1,12 +1,12 @@
-package BellmanFordAlgo;
+package model;
 
 import java.util.Objects;
 
 public class Edge {
 
-    Vertex startVertex;
-    Vertex endVertex;
-    Double weight;
+    private final Vertex startVertex;
+    private final Vertex endVertex;
+    private final Double weight;
 
     public Edge(Vertex start, Vertex end, Double weight){
         this.startVertex = start;
