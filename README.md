@@ -22,4 +22,5 @@ Below is a sample output. </br>
 ![Path](Capture.PNG)
 
 ### Future Additions
+* Add Tests using Mockito!
 * Have the algorithmRunner continuously updating in real time
