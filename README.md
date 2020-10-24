@@ -1,4 +1,7 @@
 # Arbitrage Detector in the Foreign Exchange Market 
+
+![Arbitrage-Detector](https://socialify.git.ci/haltaf19/Arbitrage-Detector/image?description=1&font=KoHo&language=1&owner=1&pattern=Diagonal%20Stripes&stargazers=1&theme=Dark)
+
 ## Applications of the Bellman-Ford Algorithm
 
 A console based application that uses the Bellman-Ford algorithm to detect arbitrage opportunities.
